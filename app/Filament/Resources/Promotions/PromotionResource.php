@@ -13,11 +13,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class PromotionResource extends Resource
 {
     protected static ?string $model = Promotion::class;
-
+    protected static ?int $navigationSort = 3;
+    protected static string|null|UnitEnum $navigationGroup = '活動';
     public static function getModelLabel(): string
     {
         return '促銷活動';

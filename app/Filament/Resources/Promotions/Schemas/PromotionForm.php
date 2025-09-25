@@ -28,6 +28,7 @@ class PromotionForm
                 Select::make('products')
                     ->label('商品')
                     ->multiple() // 開啟多選
+                    ->preload()
                     ->relationship('products', 'name'),
                 TextInput::make('discount_value')
                     ->label('折扣值')

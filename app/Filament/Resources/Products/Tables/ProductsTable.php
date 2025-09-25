@@ -2,9 +2,13 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
+use App\Filament\Exports\ProductExporter;
+use App\Filament\Imports\ProductImporter;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ExportAction;
+use Filament\Actions\ImportAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -14,7 +18,12 @@ class ProductsTable
 {
     public static function configure(Table $table): Table
     {
-        return $table
+        return $table->headerActions([
+            ImportAction::make()
+                ->importer(ProductImporter::class),
+            ExportAction::make()
+                ->exporter(ProductExporter::class),
+        ])
             ->columns([
                 TextColumn::make('name')->label('名稱')->searchable()->sortable(),
                 TextColumn::make('sku')->label('SKU')->searchable()->sortable(),
